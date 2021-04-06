@@ -1,9 +1,7 @@
 /******************************************************************************
-
                               Online C++ Compiler.
                Code, Compile, Run and Debug C++ program online.
 Write your code in this editor and press "Run" button to compile and execute it.
-
 *******************************************************************************/
 
 #include <bits/stdc++.h>
@@ -40,7 +38,7 @@ int checklife(int x, int y)
             {
                //cout<<"Current cell : "<<x<<" "<<y<<" ";
                //cout<<"Checking : "<<x+arrcheck[i]<<" "<<y+arrcheck[j]<<" ";
-               if(arr[x+arrcheck[i]][y+arrcheck[j]] != '0')
+               if(arr[x+arrcheck[i]][y+arrcheck[j]] != '.')
                     neigh++;
             }
         }
@@ -73,7 +71,7 @@ int main()
     {
         for(int j = 0;j<side;j++)
         {
-            arr[i][j] = ' ';
+            arr[i][j] = '.';
         } 
     }
     
@@ -81,8 +79,10 @@ int main()
     arr[1][1] = '8';
     arr[1][2] = '8';
     arr[1][3] = '8';
+    //print();
    while(true)
     {
+        cout << "\033[2J\033[1;1H";
     for(int k = 0;k<side;k++)
     {
         for(int l = 0;l<side;l++)
@@ -90,12 +90,12 @@ int main()
             flag = checklife(k,l);
             if(flag == -1)
             {
-                if(arr[k][l] != ' ')
-                    arr[k][l] = ' ';
+                if(arr[k][l] != '.')
+                    arr[k][l] = '.';
             }
             if(flag == 1)
             {
-                if(arr[k][l] == ' ')
+                if(arr[k][l] == '.')
                     arr[k][l] = '8';
             }
             
@@ -103,6 +103,6 @@ int main()
     }
  //   usleep(33333);
     print();
-    } 
+    }
     
 }
