@@ -7,10 +7,13 @@ Write your code in this editor and press "Run" button to compile and execute it.
 *******************************************************************************/
 
 #include <bits/stdc++.h>
+#include <unistd.h>
 
 using namespace std;
 
-char arr[255][255];
+#define side 10
+
+char arr[side][side];
 
 int checklife(int x, int y)
 {
@@ -20,11 +23,11 @@ int checklife(int x, int y)
     {
        for(int j = 0;j<3;j++)
         {
-            if((x+arrcheck[i])<0 || (x+arrcheck[i])>255)
+            if((x+arrcheck[i])<0 || (x+arrcheck[i])>=side)
             {
                 continue;
             }
-            else if((y+arrcheck[j])<0 || (y+arrcheck[j]>255))
+            else if((y+arrcheck[j])<0 || (y+arrcheck[j]>=side))
             {
                 continue;
             }
@@ -35,11 +38,13 @@ int checklife(int x, int y)
             }
             else
             {
-                cout<<"Current cell : "<<x<<" "<<y<<" ";
-                cout<<"Checking : "<<x+arrcheck[i]<<" "<<y+arrcheck[j]<<" ";
+               //cout<<"Current cell : "<<x<<" "<<y<<" ";
+               //cout<<"Checking : "<<x+arrcheck[i]<<" "<<y+arrcheck[j]<<" ";
+               if(arr[x+arrcheck[i]][y+arrcheck[j]] != '0')
+                    neigh++;
             }
         }
-        cout<<endl;
+        //cout<<endl;
     }
     if(neigh<2)
         return -1;
@@ -52,9 +57,9 @@ int checklife(int x, int y)
 }
 void print()
 {
-    for(int i = 0;i<255;i++)
+    for(int i = 0;i<side;i++)
     {
-        for(int j = 0;j<255;j++)
+        for(int j = 0;j<side;j++)
         {
             cout<<arr[i][j];
         }
@@ -64,23 +69,23 @@ void print()
 
 int main()
 {
-    for(int i = 0;i<255;i++)
+    for(int i = 0;i<side;i++)
     {
-        for(int j = 0;j<255;j++)
+        for(int j = 0;j<side;j++)
         {
             arr[i][j] = ' ';
         } 
     }
     
     int flag;
-    arr[126][127] = '8';
-    arr[127][127] = '8';
-    arr[128][127] = '8';
+    arr[1][1] = '8';
+    arr[1][2] = '8';
+    arr[1][3] = '8';
    while(true)
     {
-    for(int k = 0;k<255;k++)
+    for(int k = 0;k<side;k++)
     {
-        for(int l = 0;l<255;l++)
+        for(int l = 0;l<side;l++)
         {
             flag = checklife(k,l);
             if(flag == -1)
@@ -96,7 +101,8 @@ int main()
             
         } 
     }
- //   print();
+ //   usleep(33333);
+    print();
     } 
     
 }
